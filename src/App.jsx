@@ -61,6 +61,15 @@ const DADOS_POSTS = [
     curtidas: 2100,
     legenda: "SEQUÊNCIA CONFIRMADA 🔴",
     legendaCompleta: "Tokyo is a city that never sleeps. The lights, the food, the culture... I'll be back soon!"
+  },
+  {
+    id: 6,
+    usuario: "instituto.proa",
+    fotoPerfil: "/pfp-6.jpg",
+    imagens: ["/post-6.jpg", "/post-6-2.jpg", "/post-6-3.jpg", "/post-6-4.jpg"],
+    curtidas: 890,
+    legenda: "Longe de serem apenas mentirinhas de 1º de abril, esses mitos circulam durante o ano todo. 🤞",
+    legendaCompleta: "Longe de serem apenas mentirinhas de 1º de abril, esses mitos circulam durante o ano todo. 🤞Faça parte da Plataforma PROA e se prepare para o início da sua carreira: link na bio."
   }
 ];
 
@@ -180,8 +189,13 @@ function App() {
       <main className="conteudo-principal">
         <div className="container-feed">
           <section className="secao-stories">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="circulo-story"></div>
+            {DADOS_POSTS.map((story) => (
+              <div key={story.id} className="item-story">
+                <div className="borda-colorida">
+                  <img src={story.fotoPerfil} alt={story.usuario} />
+                </div>
+                <span>{story.usuario}</span>
+              </div>
             ))}
           </section>
 
@@ -192,6 +206,38 @@ function App() {
           </section>
         </div>
       </main>
+
+      <aside className="sidebar-sugestoes">
+        <div className="perfil-usuario-logado">
+          <img src="/minha-pfp.jpg" alt="meu perfil" />
+          <div className="info">
+            <strong>jubsp.0</strong>
+            <span>Julia⛧</span>
+          </div>
+          <button className="botao-switch">Mudar</button>
+        </div>
+
+        <div className="titulo-sugestoes">
+          <span>Sugestões para você</span>
+          <button>Ver tudo</button>
+        </div>
+
+        <div className="lista-sugestoes">
+          <div className="item-sugestao">
+            <img src="/pfp-sugestao.jpg" alt="sugestao" />
+            <div className="info">
+              <strong>cinamoroll</strong>
+              <span>Seguido por amigos em comum</span>
+            </div>
+            <button className="botao-follow">Seguir</button>
+          </div>
+        </div>
+
+        <footer className="footer-sidebar">
+          <p>Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos • Localizações • Idioma • Meta Verified</p>
+          <p>© 2026 INSTAGRAM FROM META</p>
+        </footer>
+      </aside>      
 
       {postSelecionado && (
         <div className="sobreposicao-modal" onClick={fecharModal}>
