@@ -10,7 +10,8 @@ import {
   Send,
   Bookmark,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  MoreHorizontal
 } from 'lucide-react';
 import { useState } from 'react';
 import './App.css';
@@ -95,7 +96,7 @@ function Postagem({ dados, aoAbrirModal }) {
           <span className="nome-usuario-post">{dados.usuario}</span>
           <span className="tempo-post">• 2 h</span>
         </div>
-        <button className="botao-opcoes-limpo">•••</button>
+        <button className="botao-opcoes-limpo"><MoreHorizontal size={20} /></button>
       </header>
 
       <div className="container-imagem-post">
@@ -119,8 +120,8 @@ function Postagem({ dados, aoAbrirModal }) {
             <Heart 
               size={24} className="icone-acao" 
               onClick={() => setCurtido(!curtido)}
-              fill={curtido ? "red" : "none"}
-              color={curtido ? "red" : "black"}
+              fill={curtido ? "#ff3040" : "none"}
+              color={curtido ? "#ff3040" : "black"}
             />
             <MessageCircle size={24} className="icone-acao" onClick={() => aoAbrirModal(dados, imagemAtual, curtido, setCurtido)} />
             <Send size={24} className="icone-acao" />
@@ -179,8 +180,8 @@ function App() {
           <div className="item-menu"><Search size={24} /><span>Pesquisa</span></div>
           <div className="item-menu"><Compass size={24} /><span>Explorar</span></div>
           <div className="item-menu"><Clapperboard size={24} /><span>Reels</span></div>
-          <div className="item-menu"><MessageCircle size={24} /><span>Mensagens</span></div>
-          <div className="item-menu"><Heart size={24} /><span>Notificações</span></div>
+          <div className="item-menu"><MessageCircle size={24} /><span>Mensagens</span><span className="badge-notificacao">1</span></div>
+          <div className="item-menu"><Heart size={24} /><span>Notificações</span><div className="badge-notificacao" style={{ width: '8px', height: '8px', minWidth: '8px', padding: 0 }}></div>          </div>
           <div className="item-menu"><PlusSquare size={24} /><span>Criar</span></div>
           <div className="item-menu"><User size={24} /><span>Perfil</span></div>
         </nav>
@@ -239,6 +240,20 @@ function App() {
         </footer>
       </aside>      
 
+      <div className="caixa-direct-flutuante">
+        <div className="conteudo-direct-balao">
+
+      <div className="grupo-esquerda">
+        <div className="icone-wrapper">
+          <MessageCircle size={26} strokeWidth={1.5} /> 
+            <span className="badge-notificacao-direct">1</span>
+        </div>
+        <span className="texto-direct">Mensagens</span>
+      </div>
+          <img src="/minha-pfp.jpg" alt="Perfil" className="foto-perfil-direct" />
+        </div>
+      </div>
+
       {postSelecionado && (
         <div className="sobreposicao-modal" onClick={fecharModal}>
           <div className="conteudo-modal" onClick={(e) => e.stopPropagation()}>
@@ -258,7 +273,7 @@ function App() {
                   <img src={postSelecionado.fotoPerfil} alt="usuario" className="foto-autor-post" />
                   <strong>{postSelecionado.usuario}</strong>
                 </div>
-                <button className="botao-opcoes-limpo">•••</button>
+                <button className="botao-opcoes-limpo"><MoreHorizontal size={20} /></button>
               </header>
 
               <div className="area-comentarios-fixa">
@@ -279,8 +294,8 @@ function App() {
                   <div className="acoes-esquerda">
                     <Heart 
                       size={24} onClick={alternarCurtidaModal} 
-                      fill={modalCurtido ? "red" : "none"} 
-                      color={modalCurtido ? "red" : "black"} 
+                      fill={modalCurtido ? "#ff3040" : "none"} 
+                      color={modalCurtido ? "#ff3040" : "black"} 
                     />
                     <MessageCircle size={24} />
                     <Send size={24} />

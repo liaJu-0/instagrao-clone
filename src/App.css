@@ -44,9 +44,37 @@ body, html {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  position: relative;
 }
 
 .item-menu:hover { background-color: #ffffff; }
+
+.badge-notificacao {
+  position: absolute;
+  top: 10px;
+  left: 28px;
+  background-color: #ff3040;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  width: 9px;
+  height: 18px;
+  border-radius: 50%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  padding: 0 4px;
+}
+
+.status-badge {
+  width: 8px;
+  height: 8px;
+  background-color: #0095f6;
+  border-radius: 50%;
+  margin-left: 5px;
+}
 
 .conteudo-principal {
   flex: 1;
@@ -360,7 +388,7 @@ body, html {
 
 .sidebar-sugestoes {
   width: 320px;
-  padding: 40px 20px 10px 51px;
+  padding: 40px 20px 0px 0px;
 }
 
 .perfil-usuario-logado, .item-sugestao {
@@ -405,4 +433,69 @@ body, html {
   font-size: 12px;
   color: #c7c7c7;
   line-height: 1.5;
+}
+
+.caixa-direct-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 251px;
+  height: 58px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+.conteudo-direct-balao {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; 
+}
+
+.icone-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.badge-notificacao-direct {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background-color: #ff3040;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.grupo-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.texto-direct {
+  font-size: 16px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.foto-perfil-direct {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
