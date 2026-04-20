@@ -9,7 +9,6 @@ body, html {
   min-height: 100vh;
 }
 
-/* Barra Lateral */
 .barra-lateral {
   width: 250px;
   height: 100vh;
@@ -94,13 +93,28 @@ body, html {
   padding: 12px;
 }
 
-.info-usuario-post { display: flex; align-items: center; gap: 10px; }
-.foto-autor-post { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
-.nome-usuario-post { font-weight: 600; font-size: 14px; }
+.info-usuario-post { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+}
+
+.foto-autor-post { 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  flex-shrink: 0;
+}
+
+.nome-usuario-post { 
+  font-weight: 600; 
+  font-size: 14px; 
+}
 
 .container-imagem-post {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 4/5;
   position: relative;
   background-color: black;
   overflow: hidden;
@@ -110,6 +124,18 @@ body, html {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.botao-opcoes-limpo {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: #262626;
+  display: flex;
+  align-items: center;
 }
 
 .botao-carrossel {
@@ -149,16 +175,15 @@ body, html {
 
 .ponto.ativo { background: white; }
 
-/* Rodapé do Post */
 .rodape-post { padding: 12px; }
 .acoes-post { display: flex; justify-content: space-between; margin-bottom: 8px; }
 .acoes-esquerda { display: flex; gap: 16px; }
 .icone-acao { cursor: pointer; }
 .icone-acao:hover { opacity: 0.7; }
 .contagem-curtidas { font-weight: 600; font-size: 14px; }
+.conteudo-post p { font-size: 14px; margin: 8px 0; }
 .ver-comentarios { color: #737373; font-size: 14px; cursor: pointer; }
 
-/* Modal */
 .sobreposicao-modal {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -169,25 +194,6 @@ body, html {
 
 .conteudo-modal {
   background: white;
-  width: 90%;
-  max-width: 1100px;
-  height: 85vh;
-  display: flex;
-}
-
-.modal-esquerda { flex: 1.5; background: black; display: flex; align-items: center; }
-.modal-esquerda img { width: 100%; }
-.modal-direita { flex: 1; display: flex; flex-direction: column; padding: 15px; }
-
-.cabecalho-modal {
-  display: flex; align-items: center; gap: 12px;
-  padding-bottom: 15px; border-bottom: 1px solid #efefef;
-}
-
-/* ... estilos anteriores mantidos ... */
-
-.conteudo-modal {
-  background: white;
   width: 95%;
   max-width: 1100px;
   height: 85vh;
@@ -195,11 +201,12 @@ body, html {
 }
 
 .modal-esquerda {
-  flex: 1.3;
-  background: black;
+  flex: 1.2;
+  background: #000;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  height: 100%;
 }
 
 .modal-esquerda img {
@@ -226,15 +233,31 @@ body, html {
 .area-comentarios-fixa {
   flex: 1;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  overflow-y: auto;
 }
 
 .comentario {
   display: flex;
+  align-items: flex-start;
   gap: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.corpo-texto {
   font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.corpo-texto strong {
+  margin-right: 6px;
+  font-weight: 600;
+}
+
+.texto-legenda {
+  word-break: break-word;
+  white-space: pre-line;
 }
 
 .rodape-modal {
@@ -245,8 +268,8 @@ body, html {
 .campo-comentario {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
-  border-top: 1px solid #efefef;
   padding-top: 10px;
 }
 
@@ -254,6 +277,7 @@ body, html {
   border: none;
   outline: none;
   flex: 1;
+  font-size: 14px;
 }
 
 .botao-publicar {
@@ -261,9 +285,11 @@ body, html {
   border: none;
   color: #0095f6;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  padding: 0 8px;
 }
 
-.area-comentarios { flex: 1; padding: 15px 0; overflow-y: auto; font-size: 14px; }
-.rodape-modal { border-top: 1px solid #efefef; padding-top: 15px; }
-.rodape-modal input { width: 100%; border: none; padding: 10px 0; outline: none; }
+.botao-publicar:hover {
+  color: #00376b;
+}
