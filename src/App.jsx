@@ -13,7 +13,9 @@ import {
   ChevronRight,
   MoreHorizontal,
   X,
-  Maximize2
+  Maximize2,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { useState } from 'react';
 import './App.css';
@@ -123,7 +125,7 @@ function Postagem({ dados, aoAbrirModal }) {
               size={24} className="icone-acao" 
               onClick={() => setCurtido(!curtido)}
               fill={curtido ? "#ff3040" : "none"}
-              color={curtido ? "#ff3040" : "black"}
+              color={curtido ? "#ff3040" : "currentColor"}
             />
             <MessageCircle size={24} className="icone-acao" onClick={() => aoAbrirModal(dados, imagemAtual, curtido, setCurtido)} />
             <Send size={24} className="icone-acao" />
@@ -146,6 +148,8 @@ function App() {
   const [modalCurtido, setModalCurtido] = useState(false);
   const [setCurtirOriginal, setSetCurtirOriginal] = useState(null);
   const [directAberto, setDirectAberto] = useState(false);
+
+  const [temaEscuro, setTemaEscuro] = useState(false);
 
   const abrirModal = (dados, imgIdx, curtido, funcSetCurtir) => {
     setPostSelecionado(dados);
@@ -173,6 +177,7 @@ function App() {
   };
 
   return (
+  <div className="container-app" data-theme={temaEscuro ? 'dark' : 'light'}>
     <div className="container-app">
       <aside className="barra-lateral">
         <div className="logo-container">
@@ -184,6 +189,10 @@ function App() {
           <div className="item-menu"><Compass size={24} /><span>Explorar</span></div>
           <div className="item-menu"><Clapperboard size={24} /><span>Reels</span></div>
           <div className="item-menu"><MessageCircle size={24} /><span>Mensagens</span><span className="badge-notificacao">4</span></div>
+          <div className="item-menu" onClick={() => setTemaEscuro(!temaEscuro)}>
+            {temaEscuro ? <Sun size={24} /> : <Moon size={24} />}
+            <span>{temaEscuro ? 'Modo Claro' : 'Modo Escuro'}</span>
+          </div>
           <div className="item-menu"><Heart size={24} /><span>Notificações</span><div className="badge-notificacao" style={{ width: '8px', height: '8px', minWidth: '8px', padding: 0 }}></div></div>
           <div className="item-menu"><PlusSquare size={24} /><span>Criar</span></div>
           <div className="item-menu"><User size={24} /><span>Perfil</span></div>
@@ -352,7 +361,7 @@ function App() {
                     <Heart 
                       size={24} onClick={alternarCurtidaModal} 
                       fill={modalCurtido ? "#ff3040" : "none"} 
-                      color={modalCurtido ? "#ff3040" : "black"} 
+                      color={modalCurtido ? "#ff3040" : "currentColor"} 
                     />
                     <MessageCircle size={24} />
                     <Send size={24} />
@@ -372,6 +381,7 @@ function App() {
         </div>
       )}
     </div>
+  </div>
   );
 }
 

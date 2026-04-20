@@ -1,12 +1,44 @@
+:root {
+  --bg-app: #ffffff;
+  --bg-sidebars: #ffffff;
+  --text-main: #000000;
+  --text-secondary: #737373;
+  --border-primary: #dbdbdb;
+  --bg-hover: #fafafa;
+  --modal-overlay: rgba(0, 0, 0, 0.65);
+  --bg-story-img: #ffffff;
+  --badge-border: #ffffff;
+}
+
+[data-theme='dark'] {
+  --bg-app: #000000;
+  --bg-sidebars: #000000;
+  --text-main: #f5f5f5;
+  --text-secondary: #a8a8a8;
+  --border-primary: #262626;
+  --bg-hover: #1a1a1a;
+  --modal-overlay: rgba(255, 255, 255, 0.1);
+  --bg-story-img: #000000;
+  --badge-border: #000000;
+}
+
+[data-theme='dark'] .imagem-logo {
+  filter: invert(1);
+}
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .container-app {
   display: flex;
   min-height: 100vh;
+  background-color: var(--bg-app);
 }
 
 .barra-lateral {
@@ -14,7 +46,7 @@ body, html {
   height: 100vh;
   padding: 8px 12px 20px 12px;
   position: fixed;
-  background-color: white;
+  background-color: var(--bg-sidebars);
   display: flex;
   flex-direction: column;
 }
@@ -45,9 +77,10 @@ body, html {
   cursor: pointer;
   transition: background-color 0.2s;
   position: relative;
+  color: var(--text-main);
 }
 
-.item-menu:hover { background-color: #ffffff; }
+.item-menu:hover { background-color: var(--bg-hover); }
 
 .badge-notificacao {
   position: absolute;
@@ -57,14 +90,13 @@ body, html {
   color: white;
   font-size: 10px;
   font-weight: bold;
-  width: 9px;
   height: 18px;
-  border-radius: 50%;
+  min-width: 9px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
+  border: 2px solid var(--badge-border);
   padding: 0 4px;
 }
 
@@ -78,15 +110,15 @@ body, html {
 
 .conteudo-principal {
   flex: 1;
-  margin-left: 220px;
+  margin-left: 290px;
   display: flex;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: var(--bg-app);
 }
 
 .container-feed {
   width: 100%;
-  max-width: 850px;
+  max-width: 950px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -98,19 +130,10 @@ body, html {
   gap: 16px;
   padding: 16px 0px;
   margin-bottom: 10px;
-  width: 620px;
+  width: 610px;
 }
 
 .secao-stories::-webkit-scrollbar { display: none; }
-
-.circulo-story {
-  width: 100px;
-  height: 100px;
-  background: #ddd;
-  border-radius: 50%;
-  border: 5px solid #e6683c;
-  flex-shrink: 0;
-}
 
 .item-story {
   display: flex;
@@ -125,7 +148,7 @@ body, html {
   width: 78px;
   height: 78px;
   border-radius: 50%;
-  padding: 5px;
+  padding: 7px;
   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   display: flex;
   align-items: center;
@@ -136,9 +159,9 @@ body, html {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 4px solid var(--bg-app);
   object-fit: cover;
-  background-color: #fff;
+  background-color: var(--bg-story-img);
 }
 
 .item-story span {
@@ -147,12 +170,13 @@ body, html {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--text-main);
 }
 
 .postagem {
   width: 468px;
-  background-color: white;
-  border: 1px solid #dbdbdb;
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-primary);
   border-radius: 8px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -181,9 +205,10 @@ body, html {
   flex-shrink: 0;
 }
 
-.nome-usuario-post { 
+.nome-usuario-post, .info strong, .contagem-curtidas { 
   font-weight: 600; 
-  font-size: 14px; 
+  font-size: 14px;
+  color: var(--text-main);
 }
 
 .container-imagem-post {
@@ -208,11 +233,9 @@ body, html {
   border: none;
   padding: 8px;
   cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
-  color: #262626;
   display: flex;
   align-items: center;
+  color: var(--text-main);
 }
 
 .botao-carrossel {
@@ -229,6 +252,7 @@ body, html {
   justify-content: center;
   cursor: pointer;
   z-index: 5;
+  color: #000;
 }
 
 .botao-carrossel.esquerda { left: 10px; }
@@ -266,25 +290,32 @@ body, html {
 .icone-acao { cursor: pointer; }
 .icone-acao:hover { opacity: 0.7; }
 .contagem-curtidas { font-weight: 600; font-size: 14px; }
-.conteudo-post p 
-{ 
+.conteudo-post p { 
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
   word-wrap: break-word;
+  color: var(--text-main);
 }
-.ver-comentarios { color: #737373; font-size: 14px; cursor: pointer; }
+
+.ver-comentarios, .info span, .msg-preview, .footer-sidebar {
+  color: var(--text-secondary); 
+  font-size: 14px; 
+  cursor: pointer; 
+}
 
 .sobreposicao-modal {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
+  background: var(--modal-overlay);
   display: flex; justify-content: center; align-items: center;
   z-index: 1000;
 }
 
 .conteudo-modal {
-  background: white;
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-primary);
+  color: var(--text-main);
   width: 95%;
   max-width: 1100px;
   height: 85vh;
@@ -311,7 +342,9 @@ body, html {
   flex: 0.7;
   display: flex;
   flex-direction: column;
-  background: white;
+  background-color: var(--bg-app);
+  border-left: 1px solid var(--border-primary);
+  color: var(--text-main);
 }
 
 .cabecalho-modal {
@@ -319,7 +352,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .area-comentarios-fixa {
@@ -340,11 +373,13 @@ body, html {
   font-size: 14px;
   line-height: 1.5;
   text-align: left;
+  color: var(--text-main);
 }
 
 .corpo-texto strong {
   margin-right: 6px;
   font-weight: 600;
+  color: var(--text-main);
 }
 
 .texto-legenda {
@@ -354,7 +389,7 @@ body, html {
 
 .rodape-modal {
   padding: 12px 16px;
-  border-top: 1px solid #efefef;
+  border-top: 1px solid var(--border-primary);
 }
 
 .campo-comentario {
@@ -370,6 +405,8 @@ body, html {
   outline: none;
   flex: 1;
   font-size: 14px;
+  background: transparent;
+  color: var(--text-main);
 }
 
 .botao-publicar {
@@ -382,13 +419,11 @@ body, html {
   padding: 0 8px;
 }
 
-.botao-publicar:hover {
-  color: #00376b;
-}
+.botao-publicar:hover { color: #00376b; }
 
 .sidebar-sugestoes {
   width: 320px;
-  padding: 40px 20px 0px 0px;
+  padding: 40px 20px 0px 40px;
 }
 
 .perfil-usuario-logado, .item-sugestao {
@@ -407,10 +442,10 @@ body, html {
   flex-direction: column;
 }
 
-.info strong { font-size: 14px; cursor: pointer; }
-.info span { font-size: 12px; color: #737373; }
+.info strong { font-size: 14px; cursor: pointer; color: var(--text-main); }
+.info span { font-size: 12px; color: var(--text-secondary); }
 
-.botao-switch, .botao-follow, .titulo-sugestoes button {
+.botao-switch, .botao-follow {
   background: none;
   border: none;
   color: #0095f6;
@@ -425,8 +460,11 @@ body, html {
   margin: 20px 0 12px 0;
 }
 
-.titulo-sugestoes span { font-size: 14px; font-weight: 600; color: #737373; }
-.titulo-sugestoes button { color: #262626; }
+.titulo-sugestoes span { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+.titulo-sugestoes button { 
+  background: none; border: none; font-size: 12px; font-weight: 600; cursor: pointer;
+  color: var(--text-main); 
+}
 
 .footer-sidebar {
   margin-top: 32px;
@@ -435,20 +473,29 @@ body, html {
   line-height: 1.5;
 }
 
-.caixa-direct-flutuante {
+.wrapper-direct-flutuante {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.caixa-direct-flutuante {
   width: 251px;
   height: 58px;
-  background-color: white;
+  background-color: var(--bg-app);
   border-radius: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--border-primary);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   padding: 0 16px;
-  z-index: 1000;
+  cursor: pointer;
 }
 
 .conteudo-direct-balao {
@@ -478,7 +525,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
+  border: 2px solid var(--badge-border);
 }
 
 .grupo-esquerda {
@@ -490,7 +537,7 @@ body, html {
 .texto-direct {
   font-size: 16px;
   font-weight: 500;
-  color: #262626;
+  color: var(--text-main);
 }
 
 .foto-perfil-direct {
@@ -499,24 +546,15 @@ body, html {
   border-radius: 50%;
   object-fit: cover;
 }
-.wrapper-direct-flutuante {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-}
 
 .janela-mensagens {
   width: 350px;
   height: 450px;
-  background: white;
+  background-color: var(--bg-app);
   border-radius: 12px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--border-primary);
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -528,21 +566,21 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .titulo-header {
   display: flex;
   align-items: center;
   font-size: 16px;
-  font-weight: 600; /* Texto mais gordinho igual ao Instagram */
-  color: #000;
+  font-weight: 600;
+  color: var(--text-main);
 }
 
 .acoes-cabecalho {
   display: flex;
   align-items: center;
-  gap: 12px; /* Espaço entre o ícone de expandir e o X */
+  gap: 12px;
 }
 
 .botao-header-direct {
@@ -553,8 +591,8 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #262626;
   transition: opacity 0.2s;
+  color: var(--text-main);
 }
 
 .botao-header-direct:hover {
@@ -577,7 +615,7 @@ body, html {
 
 .lista-conversas {
   flex: 1;
-  overflow-y: auto; /* Permite rolar os contatos igual na imagem */
+  overflow-y: auto;
 }
 
 .item-conversa {
@@ -586,10 +624,11 @@ body, html {
   padding: 12px 16px;
   gap: 12px;
   cursor: pointer;
+  border-color: var(--border-primary);
 }
 
 .item-conversa:hover {
-  background-color: #fafafa;
+  background-color: var(--bg-hover);
 }
 
 .item-conversa img {
@@ -606,7 +645,7 @@ body, html {
 
 .msg-preview {
   font-size: 13px;
-  color: #737373;
+  color: var(--text-secondary);
 }
 
 .ponto-online {
@@ -614,4 +653,8 @@ body, html {
   height: 8px;
   background-color: #0095f6;
   border-radius: 50%;
+}
+
+svg {
+  color: var(--text-main);
 }
