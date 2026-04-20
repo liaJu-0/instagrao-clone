@@ -11,7 +11,9 @@ import {
   Bookmark,
   ChevronLeft,
   ChevronRight,
-  MoreHorizontal
+  MoreHorizontal,
+  X,
+  Maximize2
 } from 'lucide-react';
 import { useState } from 'react';
 import './App.css';
@@ -143,6 +145,7 @@ function App() {
   const [modalImgIdx, setModalImgIdx] = useState(0);
   const [modalCurtido, setModalCurtido] = useState(false);
   const [setCurtirOriginal, setSetCurtirOriginal] = useState(null);
+  const [directAberto, setDirectAberto] = useState(false);
 
   const abrirModal = (dados, imgIdx, curtido, funcSetCurtir) => {
     setPostSelecionado(dados);
@@ -180,8 +183,8 @@ function App() {
           <div className="item-menu"><Search size={24} /><span>Pesquisa</span></div>
           <div className="item-menu"><Compass size={24} /><span>Explorar</span></div>
           <div className="item-menu"><Clapperboard size={24} /><span>Reels</span></div>
-          <div className="item-menu"><MessageCircle size={24} /><span>Mensagens</span><span className="badge-notificacao">1</span></div>
-          <div className="item-menu"><Heart size={24} /><span>Notificações</span><div className="badge-notificacao" style={{ width: '8px', height: '8px', minWidth: '8px', padding: 0 }}></div>          </div>
+          <div className="item-menu"><MessageCircle size={24} /><span>Mensagens</span><span className="badge-notificacao">4</span></div>
+          <div className="item-menu"><Heart size={24} /><span>Notificações</span><div className="badge-notificacao" style={{ width: '8px', height: '8px', minWidth: '8px', padding: 0 }}></div></div>
           <div className="item-menu"><PlusSquare size={24} /><span>Criar</span></div>
           <div className="item-menu"><User size={24} /><span>Perfil</span></div>
         </nav>
@@ -240,18 +243,72 @@ function App() {
         </footer>
       </aside>      
 
-      <div className="caixa-direct-flutuante">
-        <div className="conteudo-direct-balao">
-
-      <div className="grupo-esquerda">
-        <div className="icone-wrapper">
-          <MessageCircle size={26} strokeWidth={1.5} /> 
-            <span className="badge-notificacao-direct">1</span>
-        </div>
-        <span className="texto-direct">Mensagens</span>
-      </div>
-          <img src="/minha-pfp.jpg" alt="Perfil" className="foto-perfil-direct" />
-        </div>
+      <div className="wrapper-direct-flutuante">
+        {directAberto ? (
+          <div className="janela-mensagens">
+            <header className="cabecalho-mensagens">
+              <div className="titulo-header">
+                <span>Mensagens</span>
+                <span className="badge-inline">4</span>
+              </div>
+              <div className="acoes-cabecalho">
+                <button className="botao-header-direct">
+                  <Maximize2 size={18} strokeWidth={1.5} />
+                </button>
+                <button className="botao-header-direct" onClick={() => setDirectAberto(false)}>
+                  <X size={22} strokeWidth={1.5} />
+                </button>
+              </div>
+            </header>              
+            <div className="lista-conversas">
+              <div className="item-conversa">
+                <img src="/pfp-direct-1.jpg" alt="user" />
+                <div className="info-conversa">
+                  <strong>Ghostface</strong>
+                  <span className="msg-preview">Qual seu filme terror favorito? • 2h</span>
+                </div>
+                <div className="ponto-online"></div>
+              </div>
+              <div className="item-conversa">
+                <img src="/pfp-direct-2.jpeg" alt="user" />
+                <div className="info-conversa">
+                  <strong>M. Mayers </strong>
+                  <span className="msg-preview">... • 2h</span>
+                </div>
+                <div className="ponto-online"></div>
+              </div>
+              <div className="item-conversa">
+                <img src="/pfp-direct-3.jpg" alt="user" />
+                <div className="info-conversa">
+                  <strong>Jason V.</strong>
+                  <span className="msg-preview">tititi hahahaha • 2h</span>
+                </div>
+                <div className="ponto-online"></div>
+              </div>
+              <div className="item-conversa">
+                <img src="/pfp-direct-4.jpg" alt="user" />
+                <div className="info-conversa">
+                  <strong>Freddie</strong>
+                  <span className="msg-preview">Bons sonhos 😴💤• 2h</span>
+                </div>
+                <div className="ponto-online"></div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="caixa-direct-flutuante" onClick={() => setDirectAberto(true)}>
+            <div className="conteudo-direct-balao">
+              <div className="grupo-esquerda">
+                <div className="icone-wrapper">
+                  <MessageCircle size={26} strokeWidth={1.5} /> 
+                  <span className="badge-notificacao-direct">4</span>
+                </div>
+                <span className="texto-direct">Mensagens</span>
+              </div>
+              <img src="/minha-pfp.jpg" alt="Perfil" className="foto-perfil-direct" />
+            </div>
+          </div>
+        )}
       </div>
 
       {postSelecionado && (
